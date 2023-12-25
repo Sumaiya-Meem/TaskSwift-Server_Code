@@ -37,6 +37,12 @@ async function run() {
         res.send(result)
     })
 
+     // GET > Task
+     app.get('/tasks',async(req,res)=>{
+        const result =await tasksCollection.find().toArray();
+        res.send(result);
+    })
+
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
