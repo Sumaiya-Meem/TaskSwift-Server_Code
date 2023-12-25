@@ -27,6 +27,16 @@ async function run() {
     // await client.connect();
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
+
+    const userCollection = client.db("TaskSwiftDB").collection("users");
+    const tasksCollection = client.db("TaskSwiftDB").collection("tasks");
+
+    app.post('/tasks',async(req,res)=>{
+        const task = req.body;
+        const result =await tasksCollection .insertOne(task);
+        res.send(result)
+    })
+
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
