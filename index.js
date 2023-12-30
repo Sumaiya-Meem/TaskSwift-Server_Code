@@ -42,6 +42,13 @@ async function run() {
         const result =await tasksCollection.find().toArray();
         res.send(result);
     })
+    // GET > single Task
+    app.get('/tasks/:id',async(req,res)=>{
+      const id=req.params.id;
+      const query ={_id:new ObjectId(id)}
+      const result =await tasksCollection.findOne(query);
+      res.send(result);
+  })
 
     app.delete('/tasks/:id',async(req,res)=>{
         const id =req.params.id;
@@ -61,6 +68,13 @@ async function run() {
         const result =await userCollection.find().toArray();
         res.send(result);
     })
+    // GET > single user
+    app.get('/users/:id',async(req,res)=>{
+      const id=req.params.id;
+      const query ={_id:new ObjectId(id)}
+      const result =await userCollection.findOne(query);
+      res.send(result);
+  })
 
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
